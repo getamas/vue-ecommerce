@@ -21,10 +21,18 @@ import CartLink from '@/components/CartLink.vue'
 
 <style lang="scss" scoped>
 .navbar {
+  background-color: $white;
+  box-shadow:
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
   height: 65px;
+  position: sticky;
+  top: 0;
+  z-index: 9998;
 
   .container {
-    border-bottom: 1px solid $gray-100;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -56,7 +64,7 @@ import CartLink from '@/components/CartLink.vue'
   align-items: center;
   color: $gray-400;
   text-decoration: none;
-  height: 65px;
+  height: 63px;
 
   &.active {
     color: $blue;

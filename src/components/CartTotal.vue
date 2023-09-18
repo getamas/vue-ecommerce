@@ -18,12 +18,12 @@ const cart = useCartStore()
   justify-content: space-between;
   padding: 40px 0;
   border-top: 1px solid $gray-100;
+}
 
-  &-title,
-  &-price {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 0;
-  }
+.cart-total-price,
+.cart-total-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
 }
 </style>

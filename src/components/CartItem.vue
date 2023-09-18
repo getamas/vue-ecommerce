@@ -31,34 +31,34 @@ const totalPrice = computed(() => item.price * item.totalAmount)
   display: flex;
   border-top: 1px solid $gray-100;
   padding: 20px 0;
+}
 
-  &-image {
-    width: 128px;
-    height: 128px;
-    object-fit: contain;
-  }
+.cart-item-image {
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+}
 
-  &-content {
-    margin-left: 24px;
-    display: flex;
-    flex-grow: 1;
-    justify-content: space-between;
-  }
+.cart-item-content {
+  margin-left: 24px;
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+}
 
-  &-name {
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0;
-  }
+.cart-item-name {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
 
-  &-price {
-    font-weight: 500;
-  }
+.cart-item-price {
+  font-weight: 500;
+}
 
-  &-amount {
-    display: block;
-    margin-top: 5px;
-    font-size: 14px;
-  }
+.cart-item-amount {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
 }
 </style>

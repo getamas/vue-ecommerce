@@ -27,7 +27,7 @@ const cart = useCartStore()
     }
   }
 
-  &:hover {
+  &:not(.active):hover {
     :deep(svg) {
       stroke: $gray-400;
     }
