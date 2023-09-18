@@ -44,10 +44,8 @@ function addToCart() {
         {{ product.name }} <span>${{ product.price }}</span>
       </h3>
       <div class="product-list-item-text">
-        <span>
-          In Stock: {{ product.availableAmount }} <br />
-          Min order amount: {{ product.minOrderAmount }}
-        </span>
+        <span> In Stock: {{ product.availableAmount }} </span>
+        <span> Min order amount: {{ product.minOrderAmount }} </span>
       </div>
       <div class="product-list-item-amount">
         <label for="amount">Order amount</label>
@@ -58,6 +56,7 @@ function addToCart() {
         @click="addToCart"
         :disabled="maxAmount || minAmount"
         class="btn-primary btn-block"
+        data-testid="add-to-cart-button"
         :class="{ disabled: maxAmount || minAmount }"
       >
         Add to cart
@@ -91,11 +90,13 @@ function addToCart() {
 }
 
 .product-list-item-text {
-  display: flex;
-  justify-content: space-between;
   color: $gray-300;
   font-size: 14px;
   margin-bottom: 24px;
+
+  > span {
+    display: block;
+  }
 }
 
 .product-list-item-amount {

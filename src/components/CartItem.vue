@@ -17,7 +17,7 @@ const totalPrice = computed(() => item.price * item.totalAmount)
     <div class="cart-item-content">
       <div>
         <h3 class="cart-item-name">{{ item.name }}</h3>
-        <span class="cart-item-amount">Total amount: {{ item.totalAmount }}</span>
+        <span class="cart-item-amount">Order amount: {{ item.totalAmount }}</span>
       </div>
       <div>
         <span class="cart-item-price">${{ totalPrice }}</span>
