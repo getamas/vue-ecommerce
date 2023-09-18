@@ -32,7 +32,7 @@ function addToCart() {
   cartStore.addCartItem(cartItem)
   productStore.setProductAvailableAmount({ ...product, totalAmount: totalAmount.value })
 
-  totalAmount.value = 0
+  totalAmount.value = null
 }
 </script>
 
@@ -49,7 +49,7 @@ function addToCart() {
       </div>
       <div class="product-list-item-amount">
         <label for="amount">Order amount</label>
-        <input id="amount" type="number" v-model="totalAmount" />
+        <input id="amount" type="number" v-model="totalAmount" min="0" />
       </div>
       <small v-if="maxAmount" class="product-list-item-info">Order amount exceeds in stock items.</small>
       <BaseButton
