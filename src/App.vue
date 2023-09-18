@@ -29,8 +29,15 @@ body {
   font-size: 36px;
   line-height: 40px;
   font-weight: bold;
-  margin: 60px 0 40px;
+  margin: 0 0 40px;
   color: $dark;
+}
+
+label {
+  font-size: 12px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 5px;
 }
 
 input {

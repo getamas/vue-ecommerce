@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import CartLink from '@/components/CartLink.vue'
 </script>
 
 <template>
@@ -10,8 +11,8 @@ import { RouterLink } from 'vue-router'
         <li class="nav-item">
           <RouterLink active-class="active" class="nav-link" to="/products">Products</RouterLink>
         </li>
-        <li class="nav-item">
-          <RouterLink active-class="active" class="nav-link" to="/cart"> Cart </RouterLink>
+        <li>
+          <CartLink />
         </li>
       </ul>
     </div>

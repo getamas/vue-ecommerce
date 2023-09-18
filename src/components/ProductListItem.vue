@@ -1,6 +1,9 @@
 <script setup>
 import { ref, computed } from 'vue'
+
 import BaseButton from '@/components/BaseButton.vue'
+import { useCartStore } from '@/stores/cart'
+import { useProductStore } from '@/stores/products'
 
 const { product } = defineProps({
   product: {
@@ -9,17 +12,27 @@ const { product } = defineProps({
   },
 })
 
-const quantity = ref(0)
-const availableAmount = ref(product.availableAmount)
-const minAmount = computed(() => quantity.value < product.minOrderAmount)
-const maxAmount = computed(() => quantity.value > availableAmount.value)
+const cartStore = useCartStore()
+const productStore = useProductStore()
+
+const totalAmount = ref(null)
+const minAmount = computed(() => totalAmount.value < product.minOrderAmount)
+const maxAmount = computed(() => totalAmount.value > product.availableAmount)
 
 function addToCart() {
-  if (quantity.value < product.minOrderAmount) {
+  if (totalAmount.value < product.minOrderAmount) {
     return
   }
 
-  availableAmount.value = availableAmount.value - quantity.value
+  const cartItem = {
+    ...product,
+    totalAmount: totalAmount.value,
+  }
+
+  cartStore.addCartItem(cartItem)
+  productStore.setProductAvailableAmount({ ...product, totalAmount: totalAmount.value })
+
+  totalAmount.value = 0
 }
 </script>
 
@@ -30,14 +43,17 @@ function addToCart() {
       <h3 class="product-list-item-title">
         {{ product.name }} <span>${{ product.price }}</span>
       </h3>
-      <p class="product-list-item-text">
+      <div class="product-list-item-text">
         <span>
-          In Stock: {{ availableAmount }} <br />
+          In Stock: {{ product.availableAmount }} <br />
           Min order amount: {{ product.minOrderAmount }}
         </span>
-        <input class="product-list-item-amount" type="number" v-model="quantity" />
-      </p>
-      <small v-if="maxAmount" class="product-list-item-info">In stock amount excedeed.</small>
+      </div>
+      <div class="product-list-item-amount">
+        <label for="amount">Order amount</label>
+        <input id="amount" type="number" v-model="totalAmount" />
+      </div>
+      <small v-if="maxAmount" class="product-list-item-info">Order amount exceeds in stock items.</small>
       <BaseButton
         @click="addToCart"
         :disabled="maxAmount || minAmount"
@@ -83,7 +99,11 @@ function addToCart() {
 }
 
 .product-list-item-amount {
-  max-width: 60px;
+  margin-bottom: 10px;
+
+  input {
+    max-width: 75px;
+  }
 }
 
 .product-list-item-image {

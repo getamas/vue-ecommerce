@@ -1,13 +1,15 @@
 <script setup>
-import { useFetch } from '@/composables/useFetch'
 import ProductList from '@/components/ProductList.vue'
+import { useProductStore } from '@/stores/products'
 
-const { data: products, error, loading } = useFetch(import.meta.env.VITE_API_PRODUCTS_URL)
+const productStore = useProductStore()
+
+productStore.fetchProducts()
 </script>
 
 <template>
   <h1 class="page-title">Products</h1>
-  <div v-if="loading">Loading...</div>
-  <ProductList v-if="products" :products="products" />
-  <div v-if="error">Error occured while fetching products, please try again.</div>
+  <div v-if="productStore.loading && !productStore.products.length">Loading...</div>
+  <ProductList v-if="productStore.products" :products="productStore.products" />
+  <div v-if="productStore.error">Error occured while fetching products, please try again.</div>
 </template>

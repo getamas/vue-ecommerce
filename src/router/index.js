@@ -9,6 +9,11 @@ const router = createRouter({
       name: 'products',
       component: () => import(/* webpackChunkName: "products" */ '../views/ProductsView.vue'),
     },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: () => import(/* webpackChunkName: "cart" */ '../views/CartView.vue'),
+    },
   ],
 })
 
